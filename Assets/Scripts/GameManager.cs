@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using RLD;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -29,11 +30,11 @@ public class GameManager {
     public static void BeforeSceneLoad()
     {
         Debug.Log("BeforeSceneLoad");
+        InputActions ia = new InputActions();
+        ia.init();
         if (instance == null) {
             instance = new GameManager();
         }
-        instance.AddMenu();
-       // SceneManager.sceneLoaded += instance.AddMenu;
     }
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
@@ -42,9 +43,4 @@ public class GameManager {
         Debug.Log("AfterSceneLoad");
     }
 
-
-    public void AddMenu() {
-        Debug.Log("AddMenu");
-        SceneManager.LoadScene("UIMenu", LoadSceneMode.Additive);
-    }
 }
